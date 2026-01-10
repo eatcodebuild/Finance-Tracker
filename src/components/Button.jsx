@@ -1,13 +1,12 @@
 import { cn } from "../lib/utils";
 
 export default function Btn({ children, variant = "primary", size = "md", className, ...props }) {
-  const baseStyles = "rounded-md font-medium cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "rounded-md font-semibold cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "bg-primary hover:bg-primary-hover text-white shadow-sm",
-    secondary: "bg-secondary hover:bg-secondary-hover text-white shadow-sm",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white",
-    ghost: "hover:bg-gray-100",
+    primary: "bg-primary hover:bg-primary-hover text-white shadow-sm active:bg-primary-active",
+    secondary: "bg-secondary hover:bg-secondary-hover text-white shadow-sm active:bg-secondary-active",
+    outline: "border-1 border-primary text-primary hover:bg-primary hover:text-white active:bg-primary-active",
   };
 
   const sizes = {

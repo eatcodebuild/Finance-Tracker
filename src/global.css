@@ -4,6 +4,8 @@
 @theme {  
   --color-primary: oklch(51.1% 0.262 276.966);
   --color-primary-hover: oklch(58.5% 0.233 277.117);
+  --color-primary-active: oklch(45.7% 0.24 277.023);
   --color-secondary: oklch(60% 0.118 184.704);
   --color-secondary-hover: oklch(70.4% 0.14 182.503);
+  --color-secondary-active: oklch(51.1% 0.096 186.391);
 }
