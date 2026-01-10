@@ -1,5 +1,9 @@
 import "../global.css";
 
-export default function SolidBtn({ text, bgColor = "bg-violet-600" }) {
-  return <button className={`${bgColor} px-5 py-2 rounded-md shadow-sm text-white cursor-pointer hover:bg-purple-500 duration-200`}>{text}</button>;
+export default function SolidBtn({ text }) {
+  return (
+    <button className="bg-primary px-5 py-2 rounded-md shadow-sm text-white cursor-pointer duration-200">
+      {text}
+    </button>
+  );
 }

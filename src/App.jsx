@@ -1,7 +1,7 @@
 import SolidBtn from "./components/Buttons";
 
 function App() {
-  return <SolidBtn text="hi" bgColor="bg-blue-400"></SolidBtn>;
+  return <SolidBtn text="hi"></SolidBtn>;
 }
 
 export default App;

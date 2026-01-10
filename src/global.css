@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* prettier-ignore */
+@theme {  
+  --color-primary: #ed1;
+}
