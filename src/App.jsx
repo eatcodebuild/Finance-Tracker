@@ -1,7 +1,12 @@
-import SolidBtn from "./components/Buttons";
+import Btn from "./components/Button";
 
 function App() {
-  return <SolidBtn text="hi"></SolidBtn>;
+  return (
+    <>
+      <Btn children="Click"></Btn>
+      <Btn children="Click" variant="secondary"></Btn>
+    </>
+  );
 }
 
 export default App;
