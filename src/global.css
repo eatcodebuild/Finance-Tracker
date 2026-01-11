@@ -1,9 +1,9 @@
+/* prettier-ignore */
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* prettier-ignore */
-@theme {  
+@theme {
   --color-primary: oklch(51.1% 0.262 276.966);
   --color-primary-hover: oklch(58.5% 0.233 277.117);
   --color-primary-active: oklch(45.7% 0.24 277.023);

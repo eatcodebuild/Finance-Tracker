@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 export default function Btn({ children, variant = "primary", size = "md", className, ...props }) {
   const baseStyles = "rounded-md font-semibold cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
