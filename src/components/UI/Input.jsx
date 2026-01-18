@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Input({ type = "text", variant = "primary", className, width, label, colsClass, ...props }) {
   const baseStyles =
-    "border rounded bg-white dark:bg-gray-800 p-1 shadow-sm border-gray-200 focus:ring-0 focus:outline-1 transition-all duration-200 ease-in-out dark:caret-white dark:text-white";
+    "border rounded-full bg-white dark:bg-darkaccent p-1 shadow-sm border-gray-200 dark:border-purple-900 focus:ring-0 focus:outline-1 transition-all duration-200 ease-in-out dark:caret-white dark:text-white";
 
   const variants = {
     primary: "outline-primary",

@@ -10,4 +10,10 @@
   --color-secondary: oklch(60% 0.118 184.704);
   --color-secondary-hover: oklch(70.4% 0.14 182.503);
   --color-secondary-active: oklch(51.1% 0.096 186.391);
+
+  /* Theme Colours */
+  --color-darkbg: rgb(18, 0, 50);
+  --color-darkaccent: rgb(18, 0, 35);
+
+  --color-lightbg: rgb(247, 243, 255);
 }

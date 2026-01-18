@@ -8,8 +8,8 @@ export default function Signup() {
 
   return (
     <div className="flex justify-center min-h-svh items-center">
-      <Card className="bg-gray-100">
-        <h2 className="text-4xl mb-6 dark:text-white text-secondary">Create Account</h2>
+      <Card className="bg-lightbg">
+        <h2 className="text-4xl mb-6 dark:text-white text-primary">Create Account</h2>
         <div className="grid gap-3 mb-6 grid-cols-2">
           <Input colsClass="col-span-1" label="First Name" />
           <Input colsClass="col-span-1" label="Last Name" />
