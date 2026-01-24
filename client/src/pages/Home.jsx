@@ -17,18 +17,21 @@ export default function Home() {
     }
   }, [isAuthenticated, navigate]);
 
-
   if (isLoading) return <BlobLoader />;
 
   return (
     <div className="flex justify-center min-h-svh items-center relative bg-white dark:bg-gray-950">
+      <div className="absolute top-5 right-5 gap-1 flex">
+        <Button purpose="darkToggle"></Button>
+      </div>
       <div className="text-center flex justify-center flex-col items-center">
-        <img src="/logo.svg" className="h-25 mb-7" alt="Logo"/>
+        <img src="/logo.svg" className="h-25 mb-7" alt="Logo" />
         <h2 className="text-4xl mb-3 dark:text-white text-secondary">Tracka</h2>
         <p className="mb-7 dark:text-white text-secondary">Keep track of your finances</p>
-        <Button className="w-full" onClick={() => loginWithRedirect()}>Login</Button>
+        <Button className="w-full" onClick={() => loginWithRedirect()}>
+          Login
+        </Button>
       </div>
-      <Button className="absolute top-5 right-5" onClick={toggle}>{dark ? "Light" : "Dark"}</Button>
     </div>
   );
 }

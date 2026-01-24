@@ -1,6 +1,10 @@
 import { cn } from "../../lib/utils";
+import { useThemeContext } from "../../hooks/ThemeContext";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { IoPersonSharp } from "react-icons/io5";
 
-export default function Button({ children, variant = "primary", size = "md", className, ...props }) {
+export default function Button({ children, purpose = "standard", variant = "primary", size = "md", className, ...props }) {
+  const { toggle, dark } = useThemeContext();
   const baseStyles = "rounded-full cursor-pointer duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
@@ -11,13 +15,23 @@ export default function Button({ children, variant = "primary", size = "md", cla
 
   const sizes = {
     sm: "px-3 py-1.5 text-sm",
-    md: "px-5 py-2",
+    md: "px-4 py-1",
     lg: "px-7 py-3 text-lg",
   };
 
+  const isDarkToggle = purpose === "darkToggle";
+  const buttonText = isDarkToggle ? null : children;
+  const handleClick = isDarkToggle ? toggle : props.onClick;
+  const icons = {
+    darkToggle: dark ? <FaSun /> : <FaMoon />,
+    account: <IoPersonSharp />,
+  };
+  const icon = icons[purpose] ?? null;
+
   return (
-    <button className={cn(baseStyles, variants[variant], sizes[size], className)} {...props}>
-      {children}
+    <button className={cn(baseStyles, variants[variant], sizes[size], className)} onClick={handleClick} {...props}>
+      {icon}
+      {buttonText}
     </button>
   );
 }
