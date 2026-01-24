@@ -17,9 +17,8 @@ export default function Home() {
     }
   }, [isAuthenticated, navigate]);
 
-  if (isLoading) {
-    return <BlobLoader />
-  }
+
+  if (isLoading) return <BlobLoader />;
 
   return (
     <div className="flex justify-center min-h-svh items-center relative bg-white dark:bg-gray-950">
