@@ -1,5 +1,6 @@
 import Card from "../components/UI/Card";
 import Button from "../components/UI/Button";
+import { BlobLoader } from "../components/UX/Loaders";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,11 +18,7 @@ export default function Home() {
   }, [isAuthenticated, navigate]);
 
   if (isLoading) {
-    return (
-    <div className="flex justify-center min-h-svh items-center">
-      <div className="loader"></div>
-    </div>
-    );
+    return <BlobLoader />
   }
 
   return (
