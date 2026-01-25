@@ -15,7 +15,7 @@ export default function Button({ children, purpose = "standard", variant = "prim
 
   const sizes = {
     sm: "px-3 py-1.5 text-sm",
-    md: "px-4 py-1",
+    md: "px-4 py-1 min-h-8",
     lg: "px-7 py-3 text-lg",
   };
 

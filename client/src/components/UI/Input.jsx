@@ -13,7 +13,7 @@ export default function Input({ type = "text", variant = "primary", className, w
 
   return (
     <div className={colsClass}>
-      <label htmlFor={label} className="flex mb-1 text-black dark:text-white">
+      <label htmlFor={label} className={`flex ${label && "mb-1"} text-black dark:text-white`}>
         {label}
       </label>
       {type === "password" ? (
