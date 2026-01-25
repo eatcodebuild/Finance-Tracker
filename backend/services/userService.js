@@ -1,4 +1,4 @@
-import pool from "../db.js";
+import pool from "../database/db.js";
 
 export async function findOrCreateUser({ auth0Id, email }) {
   // Try insert

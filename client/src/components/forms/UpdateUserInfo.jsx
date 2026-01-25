@@ -7,7 +7,7 @@ import { updateUser } from "../../api/Users";
 import { useState } from "react";
 
 export default function UpdateUserInfo({ onNameUpdated, setNameValid, setShowAccount, className, ...props }) {
-  const { user, isLoading, logout } = useAuth0();
+  const { user, isLoading, logout, getAccessTokenSilently } = useAuth0();
   const [nameInput, setNameInput] = useState("");
 
   const handleUpdateClick = async (e) => {
@@ -15,13 +15,13 @@ export default function UpdateUserInfo({ onNameUpdated, setNameValid, setShowAcc
 
     const nameRegex = /^[A-Za-z '-]+$/;
     if (!nameRegex.test(nameInput)) {
-      // setNameValid(false);
       return alert("Only letters accepted!");
     }
 
     try {
-      const updatedUser = await updateUser({ name: nameInput, userId: user.sub });
-      onNameUpdated(updatedUser.name);
+      const token = await getAccessTokenSilently({ audience: import.meta.env.VITE_AUTH0_AUDIENCE, scope: "update:users" });
+      const updatedUser = await updateUser({ display_name: nameInput, token: token });
+      onNameUpdated(updatedUser.display_name);
       setNameValid(true);
       setNameInput("");
       setShowAccount(false);

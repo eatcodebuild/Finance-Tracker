@@ -7,7 +7,7 @@ import UpdateUserInfo from "../components/forms/UpdateUserInfo";
 import Navbar from "../components/UI/Navbar";
 
 export default function Dashboard() {
-  const { user, isLoading, logout } = useAuth0();
+  const { user, isLoading, logout, getAccessTokenSilently } = useAuth0();
   const [nameInput, setNameInput] = useState("");
   const [displayName, setDisplayName] = useState(user?.name);
   const [nameValid, setNameValid] = useState(user?.name.includes("@") ? false : true);

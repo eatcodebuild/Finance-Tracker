@@ -1,10 +1,10 @@
 import { API_BASE_URL } from "../config/api";
 
-export async function updateUser({ name, userId }) {
+export async function updateUser({ display_name, token }) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/users/update/${userId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/update`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify({ name }),
     });
 
@@ -13,7 +13,6 @@ export async function updateUser({ name, userId }) {
     return response.json();
   } catch (error) {
     console.error("Error:", error);
-    throw error; 
+    throw error;
   }
 }
-  

@@ -2,7 +2,7 @@ import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  user: "ryan-personal", // <-- replace if different
+  user: "ryan-personal",
   host: "localhost",
   database: "finance_tracker",
   port: 5432,

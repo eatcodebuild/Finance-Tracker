@@ -1,15 +1,23 @@
-import { getManagementToken, updateAuth0User } from "../utils/auth0.js";
+import { updateUserByAuth0Id } from "../services/userService.js";
+
+const ALLOWED_FIELDS = ["display_name", "full_name", "phone", "profile_pic"];
 
 export async function updateUser(req, res) {
-  const { userId } = req.params;
-  const { name } = req.body;
-
   try {
-    const token = await getManagementToken();
-    const data = await updateAuth0User(userId, { name }, token);
-    res.json(data);
+    const auth0Id = req.user.sub;
+
+    // Filter body
+    const updates = {};
+    for (const key of ALLOWED_FIELDS) {
+      if (req.body[key] !== undefined) {
+        updates[key] = req.body[key];
+      }
+    }
+
+    const updatedUser = await updateUserByAuth0Id(auth0Id, updates);
+    res.json(updatedUser);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ message: "Failed to update user" });
   }
 }
