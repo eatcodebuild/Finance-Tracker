@@ -25,7 +25,6 @@ export default function UpdateUserInfo({ onNameUpdated, setNameValid, setShowAcc
       setNameValid(true);
       setNameInput("");
       setShowAccount(false);
-      alert("Name updated! ✅");
     } catch (err) {
       console.error(err);
     }

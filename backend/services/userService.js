@@ -19,6 +19,7 @@ export async function findOrCreateUser({ auth0Id, email }) {
   // Otherwise fetch existing
   const existing = await pool.query(`SELECT * FROM users WHERE auth0_id = $1`, [auth0Id]);
 
+  console.log("DB created row:", existing.rows[0]);
   return existing.rows[0];
 }
 
@@ -39,6 +40,7 @@ export async function updateUserByAuth0Id(auth0Id, fields) {
     `,
     [...values, auth0Id],
   );
+  console.log("DB updated row:", result.rows[0]);
 
   return result.rows[0];
 }

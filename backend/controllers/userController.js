@@ -4,7 +4,7 @@ const ALLOWED_FIELDS = ["display_name", "full_name", "phone", "profile_pic"];
 
 export async function updateUser(req, res) {
   try {
-    const auth0Id = req.user.sub;
+    const auth0Id = req.auth.payload.sub;
 
     // Filter body
     const updates = {};

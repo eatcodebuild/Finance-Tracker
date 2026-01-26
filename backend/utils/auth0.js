@@ -5,7 +5,7 @@ export async function getManagementToken() {
     body: JSON.stringify({
       client_id: process.env.AUTH0_CLIENT_ID,
       client_secret: process.env.AUTH0_CLIENT_SECRET,
-      audience: `https://${process.env.AUTH0_DOMAIN}/api/v2/`,
+      audience: process.env.AUTH0_AUDIENCE,
       grant_type: "client_credentials",
     }),
   });

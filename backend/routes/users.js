@@ -1,5 +1,6 @@
 import express from "express";
 import { updateUser } from "../controllers/userController.js";
+import { syncUser } from "../middleware/syncUser.js";
 import { auth } from "express-oauth2-jwt-bearer";
 
 const router = express.Router();
@@ -10,6 +11,6 @@ const checkJwt = auth({
   tokenSigningAlg: "RS256",
 });
 
-router.patch("/update", checkJwt, updateUser);
+router.patch("/update", checkJwt, syncUser, updateUser);
 
 export default router;
