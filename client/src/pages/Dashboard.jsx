@@ -1,7 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "../components/UI/Button";
-import Input from "../components/UI/Input";
-import { BlobLoader } from "../components/UX/Loaders";
 import { useState } from "react";
 import UpdateUserInfo from "../components/forms/UpdateUserInfo";
 import Navbar from "../components/UI/Navbar";
