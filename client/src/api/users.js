@@ -19,3 +19,20 @@ export async function updateUser({ display_name, token }) {
     throw error;
   }
 }
+
+export async function getUser({ token }) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/users/get`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) throw new Error("Error getting user!");
+
+    return response.json();
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
