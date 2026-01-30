@@ -5,3 +5,11 @@ export function BlobLoader() {
     </div>
   );
 }
+
+export function DisplayNameLoader() {
+  return (
+    <div className="flex justify-center min-h-svh bg-white dark:bg-gray-950">
+      <div className="loader2"></div>
+    </div>
+  );
+}

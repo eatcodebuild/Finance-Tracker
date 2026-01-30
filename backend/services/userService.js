@@ -44,3 +44,13 @@ export async function updateUserByAuth0Id(auth0Id, fields) {
 
   return result.rows[0];
 }
+
+export async function getUserByAuth0Id(auth0Id) {
+  const result = await pool.query(`SELECT * FROM users WHERE auth0_id = $1`, [auth0Id]);
+
+  if (result.rows.length === 0) {
+    return null; // User not found
+  }
+
+  return result.rows[0];
+}
