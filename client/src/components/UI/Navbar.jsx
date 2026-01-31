@@ -2,7 +2,7 @@ import Button from "../UI/Button";
 
 export default function Navbar({ className, user, ...props }) {
   return (
-    <nav className="bg-indigo-950">
+    <nav className="bg-indigo-950 w-full">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {user && (
           <div className="flex gap-5 items-center">

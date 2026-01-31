@@ -1,0 +1,1 @@
+- New accounts always show the "update details" popup menu even when name is changed
