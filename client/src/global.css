@@ -12,9 +12,10 @@
   --color-secondary-active: oklch(51.1% 0.096 186.391);
 
   /* Theme Colours */
-  --color-darkbg: rgb(18, 0, 50);
-  --color-darkaccent: rgb(18, 0, 35);
+  --color-darkOutline: rgb(26, 15, 83);
+  --color-darkAccent: rgb(5, 0, 28);
 
+  --color-darkBg: oklch(21% 0.034 264.665);
   --color-lightbg: rgb(247, 243, 255);
 }
 
@@ -94,4 +95,26 @@
       calc(100% / 3) 100%,
       calc(100% / 3) 0%;
   }
+}
+
+/* Animations */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.slideUp {
+  opacity: 0;
+  animation: slideUp 0.5s 1 normal forwards;
+}
+/* --- */
+
+input::placeholder {
+  opacity: 0.4;
 }

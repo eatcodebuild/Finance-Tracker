@@ -37,7 +37,7 @@ export default function Dashboard() {
     <div className="min-h-svh items-center bg-white dark:bg-gray-950 relative">
       <Navbar user={userData} nameUpdate={displayName} handleShowAccount={handleShowAccount} handleLogout={handleLogout} />
       <div className="flex justify-center items-center absolute top-1/2 left-1/2 -translate-1/2">
-        {!nameValid && <UpdateUserInfo onNameUpdated={setDisplayName} setNameValid={setNameValid} />}
+        {!nameValid && <UpdateUserInfo onNameUpdated={setDisplayName} setNameValid={setNameValid} originalEmail={user?.email} />}
       </div>
       {showAccount && (
         <div className="flex justify-center items-center absolute top-1/2 left-1/2 -translate-1/2">

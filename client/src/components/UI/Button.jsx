@@ -1,7 +1,8 @@
 import { cn } from "../../lib/utils";
 import { useThemeContext } from "../../hooks/ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
 import { IoPersonSharp } from "react-icons/io5";
+import { FiSettings, FiSun } from "react-icons/fi";
 
 export default function Button({ children, purpose = "standard", variant = "primary", size = "md", className, ...props }) {
   const { toggle, dark } = useThemeContext();
@@ -23,8 +24,9 @@ export default function Button({ children, purpose = "standard", variant = "prim
   const buttonText = isDarkToggle ? null : children;
   const handleClick = isDarkToggle ? toggle : props.onClick;
   const icons = {
-    darkToggle: dark ? <FaSun /> : <FaMoon />,
+    darkToggle: dark ? <FiSun /> : <FaMoon />,
     account: <IoPersonSharp />,
+    settings: <FiSettings />,
   };
   const icon = icons[purpose] ?? null;
 
