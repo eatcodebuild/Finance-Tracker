@@ -1,6 +1,6 @@
 import { updateUserByAuth0Id, getUserByAuth0Id } from "../services/userService.js";
 
-const ALLOWED_FIELDS = ["display_name", "full_name", "phone", "profile_pic"];
+const ALLOWED_FIELDS = ["display_name", "email", "phone", "profile_pic"];
 
 export async function updateUser(req, res) {
   try {
@@ -9,11 +9,10 @@ export async function updateUser(req, res) {
     // Filter body
     const updates = {};
     for (const key of ALLOWED_FIELDS) {
-      if (req.body[key] !== undefined) {
-        updates[key] = req.body[key];
+      if (req.body.data[key] !== undefined) {
+        updates[key] = req.body.data[key];
       }
     }
-
     const updatedUser = await updateUserByAuth0Id(auth0Id, updates);
     res.json(updatedUser);
   } catch (error) {

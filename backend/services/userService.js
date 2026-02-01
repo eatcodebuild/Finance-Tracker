@@ -28,9 +28,7 @@ export async function updateUserByAuth0Id(auth0Id, fields) {
   if (!keys.length) return null;
 
   const setClause = keys.map((key, i) => `${key} = $${i + 1}`).join(", ");
-
   const values = Object.values(fields);
-
   const result = await pool.query(
     `
     UPDATE users
@@ -41,7 +39,6 @@ export async function updateUserByAuth0Id(auth0Id, fields) {
     [...values, auth0Id],
   );
   console.log("DB updated row:", result.rows[0]);
-
   return result.rows[0];
 }
 

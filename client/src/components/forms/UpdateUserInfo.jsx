@@ -1,38 +1,20 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { cn } from "../../lib/utils";
-import Button from "../UI/Button";
-import Input from "../UI/Input";
-import { BlobLoader } from "../UX/Loaders";
-import { updateUser } from "../../api/Users";
 import { useState } from "react";
+import { userProfileSchema } from "../../schemas/userProfileSchema";
+import { updateUser } from "../../api/Users";
 import Card from "../UI/Card";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
-export default function UpdateUserInfo({ onNameUpdated, setNameValid, setShowAccount, className, ...props }) {
-  const { user, isLoading, logout, getAccessTokenSilently } = useAuth0();
-  const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState(props.originalEmail);
-  const [phoneInput, setPhoneInput] = useState("");
-  const [pictureInput, setPictureInput] = useState(null);
-
-  const handleUpdateClick = async (e) => {
-    e.preventDefault();
-
-    const nameRegex = /^[A-Za-z '-]+$/;
-    if (!nameRegex.test(nameInput)) {
-      return alert("Only letters accepted!");
-    }
-
-    try {
-      const token = await getAccessTokenSilently({ audience: import.meta.env.VITE_AUTH0_AUDIENCE, scope: "update:users" });
-      const updatedUser = await updateUser({ display_name: nameInput, token: token });
-      onNameUpdated(updatedUser.display_name);
-      setNameValid(true);
-      setNameInput("");
-      setShowAccount(false);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+export default function UpdateUserInfo({ initialData, onSuccess, setShowAccount }) {
+  const { getAccessTokenSilently } = useAuth0();
+  const [formData, setFormData] = useState({
+    display_name: initialData.display_name || "",
+    email: initialData.email || "",
+    phone: initialData.phone || "",
+    profile_pic: null,
+  });
+  const [errors, setErrors] = useState({});
 
   function capitalizeInput(value) {
     return value
@@ -41,17 +23,51 @@ export default function UpdateUserInfo({ onNameUpdated, setNameValid, setShowAcc
       .join(" ");
   }
 
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : name === "display_name" ? capitalizeInput(value) : value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await userProfileSchema.validate(formData, { abortEarly: false });
+
+      const token = await getAccessTokenSilently({
+        audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+      });
+
+      const updatedUser = await updateUser({ data: formData, token: token });
+
+      onSuccess(updatedUser); // ← single source of truth
+      setShowAccount(false);
+    } catch (err) {
+      if (err.inner) {
+        const formatted = {};
+        err.inner.forEach((e) => (formatted[e.path] = e.message));
+        setErrors(formatted);
+      } else {
+        console.error(err);
+      }
+    }
+  };
+
   return (
     <Card className="dark:shadow-blue-950 shadow-violet-200 shadow-2xl slideUp">
-      <form className={cn(className)} {...props}>
+      <form onSubmit={handleSubmit}>
         <h2 className="text-secondary dark:text-white text-3xl mb-7">Update Details</h2>
         <div className="mb-7 gap-4 flex flex-col">
-          <Input className="w-full" value={nameInput} onChange={(e) => setNameInput(capitalizeInput(e.target.value))} placeholder="John" label="Name" />
-          <Input className="w-full" placeholder="john@gmail.com" type="email" label="Email Address" value={emailInput} />
-          <Input className="w-full" placeholder="0412 345 678" label="Phone Number" />
-          <Input className="w-full" type="file" label="Profile Picture" />
+          <Input name="display_name" label="Name" value={formData.display_name} onChange={handleChange} error={errors.display_name} className="w-full" />
+          <Input name="email" label="Email" value={formData.email} onChange={handleChange} error={errors.email} className="w-full" />
+          <Input name="phone" label="Phone" value={formData.phone} onChange={handleChange} error={errors.phone} className="w-full" />
+          <Input name="profile_pic" type="file" label="Profile Picture" onChange={handleChange} className="w-full" />
         </div>
-        <Button type="submit" className="w-full" onClick={handleUpdateClick}>
+        <Button type="submit" className="w-full">
           Update
         </Button>
       </form>

@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../config/api";
 
-export async function updateUser({ display_name, token }) {
+export async function updateUser({ data, token }) {
   try {
     const response = await fetch(`${API_BASE_URL}/api/users/update`, {
       method: "PATCH",
@@ -8,12 +8,13 @@ export async function updateUser({ display_name, token }) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ display_name }),
+      body: JSON.stringify({ data }),
     });
 
     if (!response.ok) throw new Error("Error updating user!");
 
-    return response.json();
+    const info = await response.json();
+    return info;
   } catch (error) {
     console.error("Error:", error);
     throw error;

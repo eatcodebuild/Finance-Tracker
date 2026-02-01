@@ -16,6 +16,7 @@ export default function Input({ type = "text", variant = "primary", className, w
       <label htmlFor={label} className={`flex ${label && "mb-1"} text-black dark:text-white`}>
         {label}
       </label>
+      {props.error && <p className="text-red-400">{props.error}!</p>}
       {type === "password" ? (
         <div className="relative">
           <EyeClosed className="absolute right-2 top-1/2 -translate-y-1/2" />

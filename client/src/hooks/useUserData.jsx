@@ -28,5 +28,5 @@ export function useUserData() {
     fetchUser();
   }, [getAccessTokenSilently]);
 
-  return { userData, loading, error };
+  return { userData, setUserData, loading, error };
 }

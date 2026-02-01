@@ -6,8 +6,13 @@ export default function Navbar({ className, user, ...props }) {
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {user && (
           <div className="flex gap-5 items-center">
-            <img src={user?.profile_pic || "/avatar.png"} alt="Profile Picture" className="rounded-full h-12" />
-            <h3 className="text-white">Hi, {props.nameUpdate}!</h3>
+            <img
+              src={user?.profile_pic || "/avatar.png"}
+              alt="Profile Picture"
+              className="rounded-full h-12 cursor-pointer"
+              onClick={() => window.open(user?.profile_pic || "/avatar.png", "_blank")}
+            />
+            <h3 className="text-white">{user?.display_name}'s Budget</h3>
           </div>
         )}
         <div className="ms-auto">

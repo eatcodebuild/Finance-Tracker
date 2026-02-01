@@ -8,7 +8,7 @@ echo "Starting Postgres..."
 # Check if Postgres is running
 if ! lsof -i :5432 > /dev/null; then
     echo "Postgres not running. Starting..."
-    brew services start postgresql@14
+    pg_ctl -D /opt/homebrew/var/postgresql@14 start
     # Wait a few seconds for Postgres to be ready
     sleep 5
 else
