@@ -60,12 +60,21 @@ export default function UpdateUserInfo({ initialData, onSuccess, setShowAccount 
   return (
     <Card className="dark:shadow-blue-950 shadow-violet-200 shadow-2xl slideUp">
       <form onSubmit={handleSubmit}>
-        <h2 className="text-secondary dark:text-white text-3xl mb-7">Update Details</h2>
+        <h2 className="text-secondary dark:text-white text-3xl mb-8 text-center">Update Details</h2>
         <div className="mb-7 gap-4 flex flex-col">
+          <div>
+            <img
+              src={formData?.profile_pic || "/avatar.png"}
+              alt="Profile Picture"
+              className="rounded-full h-40 mx-auto cursor-pointer mb-4"
+              onClick={() => window.open(formData?.profile_pic || "/avatar.png", "_blank")}
+            />
+            <Input name="profile_pic" type="file" label="Profile Picture" onChange={handleChange} className="w-full" />
+          </div>
+          <hr className="text-secondary dark:text-primary my-4" />
           <Input name="display_name" label="Name" value={formData.display_name} onChange={handleChange} error={errors.display_name} className="w-full" />
           <Input name="email" label="Email" value={formData.email} onChange={handleChange} error={errors.email} className="w-full" />
           <Input name="phone" label="Phone" value={formData.phone} onChange={handleChange} error={errors.phone} className="w-full" />
-          <Input name="profile_pic" type="file" label="Profile Picture" onChange={handleChange} className="w-full" />
         </div>
         <Button type="submit" className="w-full">
           Update

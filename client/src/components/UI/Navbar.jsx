@@ -12,7 +12,7 @@ export default function Navbar({ className, user, ...props }) {
               className="rounded-full h-12 cursor-pointer"
               onClick={() => window.open(user?.profile_pic || "/avatar.png", "_blank")}
             />
-            <h3 className="text-white">{user?.display_name}'s Budget</h3>
+            <h3 className="text-white">{(user?.display_name).split(" ")[0]}'s Budget</h3>
           </div>
         )}
         <div className="ms-auto">
